@@ -20,7 +20,7 @@ async def on_new_message(event):
         return
     for snip in snips:
         pattern = f"( |^|[^\\w]){re.escape(snip)}( |$|[^\\w])"
-        if re.search(pattern, name, types=re.IGNORECASE):
+        if re.search(pattern, name, flags=re.IGNORECASE):
             try:
                 await event.delete()
             except Exception:
