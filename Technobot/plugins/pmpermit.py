@@ -947,10 +947,14 @@ async def block_p_m(event):
     sql.add_collection("pmwarns", PM_WARNS, {})
     sql.add_collection("pmmessagecache", PMMESSAGE_CACHE, {})
     await event.client(functions.contacts.BlockRequest(user.id))
-    await eor(
+    ABS = gvarstatus("ABUSE")
+    if ABS == "ON":
+      await eor(event, "**__ GO AND FUCK YOURSELF__** **`BLOCKED`**")
+    else:
+      await eor(
         event,
         f"[{user.first_name}](tg://user?id={user.id}) __is blocked, he can no longer personal message you.__\n**Reason:** __{reason}__",
-    )
+        )
 
 
 @techno.techno_cmd(
