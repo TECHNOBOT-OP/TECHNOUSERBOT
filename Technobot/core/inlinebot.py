@@ -278,7 +278,7 @@ async def inline_handler(event):  # sourcery no-metrics
                     text=query,
                     buttons=buttons,
                 )
-            await event.answer([https://te.legra.ph/file/d882eee939a66432650b4.jpg] if result else None)
+            await event.answer([result] if result else None)
         if query.startswith("**⚜ TechnoBot"):
             grp_username = gvarstatus("GROUP_USERNAME") or "TechnoBot_Support"
             chnl_username = gvarstatus("CHANNEL_USERNAME") or "TechnoBot_Updates"
