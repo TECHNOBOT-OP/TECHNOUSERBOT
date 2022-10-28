@@ -249,7 +249,7 @@ async def promote(event):
         await eor(event, NO_ADMIN)
         return
     new_rights = ChatAdminRights(
-        add_admins=True,
+        add_admins=False,
         invite_users=True,
         change_info=True,
         ban_users=True,
