@@ -95,7 +95,7 @@ async def aamjlive(event):
     _, check_sgnirts = check_data_base_heal_th()
     ALI_T = gvarstatus("ALIVE_TEXT")
     if ALI_T is None:
-      ALIVE_TEXT = "TechnoBot is Online"
+      ALIVE_TEXT = "**__MY BOT IS RUNNING PERFECTLY__**"
     else:
       ALIVE_TEXT = ALI_T
     EMOJI = gvarstatus("ALIVE_EMOJI") or "✥"
@@ -120,12 +120,11 @@ async def aamjlive(event):
     else:
       ALIVE_TEMPLATE = ALT
     sweetie_caption = (
-        f"**⚜ {ALIVE_TEXT} ⚜**\n\n" + f"{ALIVE_TEMPLATE}"
+        f"**⚜ TechnoBot is Online ⚜**\n\n" + f"{ALIVE_TEMPLATE}"
     )
     caption = sweetie_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         EMOTES=EMOTES,
-        ALIVE_TEMPLATE=ALIVE_TEMPLATE,
         mention=mention,
         uptime=uptime,
         telever=version.__version__,
@@ -135,7 +134,7 @@ async def aamjlive(event):
         ping=ms,
     )
     try:
-        await borg.send_file(event.chat_id, file=ALIVE_PIC, caption=sweetie_caption)
+        await borg.send_file(event.chat_id, file=ALIVE_PIC, caption=caption)
         await event.delete()
     except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
         return await eor(
