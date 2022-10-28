@@ -28,7 +28,7 @@ from ..helpers import media_type
 from ..helpers.utils import _format, get_user_from_event
 from ..sql_helper.globals import gvarstatus
 from ..sql_helper.mute_sql import is_muted, mute, unmute
-from . import BOTLOG, BOTLOG_CHATID, main_pic
+from . import BOTLOG, BOTLOG_CHATID, ban_pic, demote_pic, mute_pic, promote_pic
 
 # =================== STRINGS ============
 PP_TOO_SMOL = "`The image is too small`"
@@ -65,22 +65,22 @@ ADMIN_PIC = gvarstatus("ADMIN_PIC")
 if ADMIN_PIC:
     prmt_pic = ADMIN_PIC
 else:
-    prmt_pic = None
+    prmt_pic = promote_pic
 
 if ADMIN_PIC:
     bn_pic = ADMIN_PIC
 else:
-    bn_pic = None
+    bn_pic = ban_pic
 
 if ADMIN_PIC:
     dmt_pic = ADMIN_PIC
 else:
-    dmt_pic = None
+    dmt_pic = demote_pic
 
 if ADMIN_PIC:
     mt_pic = ADMIN_PIC
 else:
-    mt_pic = None
+    mt_pic = mute_pic
 
 
 LOGS = logging.getLogger(__name__)
@@ -199,7 +199,7 @@ async def set_group_photo(event):  # sourcery no-metrics
                 )
                 await bot.send_file(
                     event.chat_id,
-                    main_pic,
+                    help_pic,
                     caption=f"⚜ `Group Profile Pic Changed` ⚜\n🔰Chat ~ {gpic.chat.title}",
                 )
             except PhotoCropSizeSmallError:
@@ -232,7 +232,6 @@ async def set_group_photo(event):  # sourcery no-metrics
         "header": "To give admin rights for a person",
         "description": "Provides admin rights to the person in the chat\
             \nNote : You need proper rights for this",
-        "options": "ADMIN_PIC",
         "usage": [
             "{tr}promote <userid/username/reply>",
             "{tr}promote <userid/username/reply> <custom title>",
@@ -250,9 +249,9 @@ async def promote(event):
         await eor(event, NO_ADMIN)
         return
     new_rights = ChatAdminRights(
-        add_admins=False,
+        add_admins=True,
         invite_users=True,
-        change_info=False,
+        change_info=True,
         ban_users=True,
         delete_messages=True,
         pin_messages=True,
@@ -289,7 +288,6 @@ async def promote(event):
         "header": "To remove a person from admin list",
         "description": "Removes all admin rights for that peron in that chat\
             \nNote : You need proper rights for this and also u must be owner or admin who promoted that guy",
-        "options": "ADMIN_PIC",
         "usage": [
             "{tr}demote <userid/username/reply>",
             "{tr}demote <userid/username/reply> <custom title>",
@@ -338,7 +336,6 @@ async def demote(event):
         "header": "Will ban the guy in the group where you used this command.",
         "description": "Permanently will remove him from this group and he can't join back\
             \nNote : You need proper rights for this.",
-        "options": "ADMIN_PIC",
         "usage": [
             "{tr}ban <userid/username/reply>",
             "{tr}ban <userid/username/reply> <reason>",
@@ -455,7 +452,6 @@ async def watcher(event):
         "description": "If is is not admin then changes his permission in group,\
             if he is admin or if you try in personal chat then his messages will be deleted\
             \nNote : You need proper rights for this.",
-        "options": "ADMIN_PIC",
         "usage": [
             "{tr}mute <userid/username/reply>",
             "{tr}mute <userid/username/reply> <reason>",
@@ -625,7 +621,6 @@ async def endmute(event):
         "header": "To kick a person from the group",
         "description": "Will kick the user from the group so he can join back.\
         \nNote : You need proper rights for this.",
-        "options": "ADMIN_PIC",
         "usage": [
             "{tr}kick <userid/username/reply>",
             "{tr}kick <userid/username/reply> <reason>",
@@ -647,7 +642,7 @@ async def kick(event):
     if reason:
         await event.client.send_file(
             event.chat_id,
-            bn_pic,
+            help_pic,
             caption=f"Kicked` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}",
         )
     else:
