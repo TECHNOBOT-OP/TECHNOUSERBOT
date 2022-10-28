@@ -1,2 +1,4 @@
 # TECHNOUSERBOT
-#YoYo
+This is the plugin repo for Technobot
+
+#Copyright
