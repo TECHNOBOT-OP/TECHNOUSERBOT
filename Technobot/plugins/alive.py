@@ -107,12 +107,12 @@ async def aamjlive(event):
     ALT = gvarstatus("ALIVE_TEMPLATE")
     if ALT is None:
       ALIVE_TEMPLATE = "╔───*.·:·.✧✦✧.·:·.*────╗\n"
-      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Sƚαƚυʂ : {check_sgnirts}\n"
-      ALIVE_TEMPLATE += f"┣━ {EMOTES} Tҽʅҽƚԋσɳ : {version.__version__}\n"
-      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} ƚҽƈԋɳσ Bσƚ : {technoversion}\n"
-      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Uρƚιɱҽ : {uptime}\n"
-      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Pιɳɠ : {ms} ms\n"
-      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Pყƚԋσɳ  : {python_version()}\n"
+      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Sƚαƚυʂ : `{check_sgnirts}`\n"
+      ALIVE_TEMPLATE += f"┣━ {EMOTES} Tҽʅҽƚԋσɳ : `{version.__version__}`\n"
+      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} ƚҽƈԋɳσ Bσƚ : `{technoversion}`\n"
+      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Uρƚιɱҽ : `{uptime}`\n"
+      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Pιɳɠ : `{ms}` ms\n"
+      ALIVE_TEMPLATE += f"┣━ ⁭⁫{EMOTES} Pყƚԋσɳ  : `{python_version()}`\n"
       ALIVE_TEMPLATE += "╚───*.·:·.✧✦✧.·:·.*────╝\n"
       ALIVE_TEMPLATE += "  ┏━━━━━━━━━━━━━━┓\n"
       ALIVE_TEMPLATE += f"  ┣ ⁭{EMOTES} Oɯɳҽɾ : {mention}\n"
@@ -134,7 +134,7 @@ async def aamjlive(event):
         ping=ms,
     )
     try:
-        await borg.send_file(event.chat_id, file=ALIVE_PIC, caption=caption)
+        await borg.send_file(event.chat_id,reply_to=reply_to_id, file=ALIVE_PIC, caption=caption)
         await event.delete()
     except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
         return await eor(
