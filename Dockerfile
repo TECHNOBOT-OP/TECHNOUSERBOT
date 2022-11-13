@@ -1,4 +1,4 @@
-FROM TECTORND/TECHNOUSERBOT:slim-buster
+FROM TECHNOBOT-OP/TECHNOUSERBOT:slim-buster
 
 #clonning repo 
 
