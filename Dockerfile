@@ -1,4 +1,4 @@
-FROM TECHNOBOT-OP/TECHNOUSERBOT:slim-buster
+FROM technobot-op/technouserbot:slim-buster
 
 #clonning repo 
 
