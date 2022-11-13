@@ -1,16 +1,10 @@
 FROM nikolaik/python-nodejs:python3.9-nodejs18
-
-#clonning repo 
-
-RUN git clone https://github.com/TECHNOBOT-OP/TECHNOUSERBOT.git /root/Technobot
-
-#working directory 
-WORKDIR /root/Technobot
-
-# Install requirements
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-
-ENV PATH="/home/Technobot/bin:$PATH"
-
-CMD ["python3","-m","Technobot"]
+RUN apt-get update -y && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+COPY . /app/
+WORKDIR /app/
+RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache-dir --upgrade --requirement requirements.txt
+CMD python3 -m Technobot
