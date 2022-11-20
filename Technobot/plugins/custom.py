@@ -138,7 +138,7 @@ async def bad(event):  # sourcery no-metrics
                 vinfo = f'**Name:** `{gvarstatus("DEFAULT_NAME")}`\n**First Name:** `{gvarstatus("FIRST_NAME")}`\n**Last Name:** `{usrln}`\n**Bio:** `{usrbio}`\n**Photo:** `{usrphoto}`'
             else:
                 if not vinfo and vname == "ALIVE_TEMPLATE":
-                    return await eod(event, "Check @TechnoBot_Alive")
+                    return await eod(event, "Check @TechnoBot_Templates")
                 if not vinfo:
                     return await eod(
                         event,
