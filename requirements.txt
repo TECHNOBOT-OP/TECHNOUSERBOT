@@ -76,7 +76,7 @@ faker
 htmlwebshot
 Telethon==1.25.0
 
-https://github.com/alexmercerind/youtube-search-python
+git+https://github.com/alexmercerind/youtube-search-python
 git+https://github.com/xAbhish3k/py-googletrans@master
 git+https://github.com/goldsmith/Wikipedia
 
